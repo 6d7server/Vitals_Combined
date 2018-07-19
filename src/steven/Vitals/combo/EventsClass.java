@@ -42,7 +42,7 @@ public class EventsClass implements Listener {
 	public void onPlayerClickyEvent(PlayerInteractEntityEvent event) {
 		Entity entity = event.getRightClicked();
 		Player player = event.getPlayer();
-		String guild = plugin.isInGuild(player);
+		String guild = plugin.utils.isInGuild(player);
 		
 		if (!guild.equals("Unknown")) {
 			if (guild.equals("brewingguildzone")) {
@@ -72,7 +72,7 @@ public class EventsClass implements Listener {
 	public void InvClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 
-		String guild = plugin.isInGuild(player);
+		String guild = plugin.utils.isInGuild(player);
 		String name = plugin.gUtil.readableGuild(guild);
 		Material clickable = plugin.gUtil.zoneItem(guild);
 

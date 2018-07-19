@@ -43,7 +43,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 					}
 				}
 				else {
-					String guild = plugin.isInGuild((Player) sender);
+					String guild = plugin.utils.isInGuild((Player) sender);
 					if (!guild.equals("Unknown")) {
 						Inv I = new Inv();
 						
