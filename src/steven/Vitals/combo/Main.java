@@ -28,11 +28,13 @@ public class Main extends JavaPlugin {
 	public ConfigManager cfgm;
 	public Guilds guild;
 	public GuildUtils gUtil;
+	public ChatAndHud ChatHud;
 	
 	//test
 	
 	public void onEnable() {
 		getCommand(commands.cmd1).setExecutor(commands);
+		getCommand(commands.cmd2).setExecutor(commands);
 		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Vitals Guilds has be enabled.");
 		getServer().getPluginManager().registerEvents(new EventsClass(), this);
 		loadConfig();
@@ -67,6 +69,10 @@ public class Main extends JavaPlugin {
 	
 	public void guildUtils() {
 		gUtil = new GuildUtils();
+	}
+	
+	public void ChatAndHud() {
+		ChatHud = new ChatAndHud();
 	}
 	
 	private boolean setupChat() {

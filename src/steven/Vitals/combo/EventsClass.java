@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -211,5 +212,46 @@ public class EventsClass implements Listener {
 			return;
 	}
 	
+	@EventHandler
+	public void chatEvent(AsyncPlayerChatEvent event) {
+		if (plugin.getConfig().getBoolean("chatformat")) {
+			Player player = event.getPlayer();
+			if (player.hasPermission("wanderer.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GRAY + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("citizen.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.WHITE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("noble.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.YELLOW + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("merchant.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GOLD + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("knight.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_GREEN + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("baron.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GREEN + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("duke.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_PURPLE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("chancellor.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_AQUA + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("viceroy.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.AQUA + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("guardian.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.BLUE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+			else if (player.hasPermission("avatar.v")) {
+				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_RED + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+			}
+		}
+		else
+			return;		
+	}
 	
 }

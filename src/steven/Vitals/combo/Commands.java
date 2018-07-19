@@ -14,6 +14,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 	private Main plugin = Main.getPlugin(Main.class);
 	
 	public String cmd1 = "guild";
+	public String cmd2 = "chatsymbol";
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -50,6 +51,23 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 						
 						return true;
 					}
+				}
+			}
+			else if (cmd.getName().equalsIgnoreCase(cmd2)) {
+				if (plugin.getConfig().getBoolean("chatsymbols")) {
+					Player player = (Player)sender;
+					if (player.hasPermission("chatsymbol.v")) {
+						player.sendMessage(ChatColor.GREEN + "[Avaliable Unicodes]");
+				    	player.sendMessage(plugin.ChatHud.unicodeList());
+				    	return true;
+					}
+					else
+						player.sendMessage(ChatColor.RED + plugin.getConfig().getString("no_perms_cmd"));
+					return true;
+				}
+				else {
+					sender.sendMessage(ChatColor.RED + "Chat Symbols is not enabled.");
+					return true;
 				}
 			}
 		}
