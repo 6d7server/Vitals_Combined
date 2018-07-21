@@ -210,17 +210,9 @@ public class ChatAndHud implements Listener {
 		Score timeT = o.getScore(ChatColor.GOLD + "" + ChatColor.BOLD + "World Time:");
 		timeT.setScore(9);
 		
-		Score time = o.getScore(ChatColor.YELLOW + timeU("6d7"));
+		Score time = o.getScore(ChatColor.YELLOW + time("6d7"));
 		time.setScore(8);
 		
 		player.setScoreboard(b);
 	}
-	
-	public static String timeU(String world) {
-		long time = Bukkit.getServer().getWorld(world).getFullTime();
-		int hours = (int)((time/1000+8)%24);
-		int minutes = (int)(60*(time%1000)/1000);
-		return String.format("%02d:%02d", hours, minutes);
-	}
-
 }

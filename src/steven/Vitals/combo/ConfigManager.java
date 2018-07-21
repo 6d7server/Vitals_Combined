@@ -20,6 +20,9 @@ public class ConfigManager implements Listener {
 	public FileConfiguration guildItemsData;
 	public File guildItems;
 	
+	public FileConfiguration playerTimeData;
+	public File playerTime;
+	
 	public void setupPlayersGuilds() {
 		if (!plugin.getDataFolder().exists()) {
 			plugin.getDataFolder().mkdir();
@@ -90,7 +93,44 @@ public class ConfigManager implements Listener {
 	}
 	
 	public void reloadGuildItems() {
-		guildItemsData = YamlConfiguration.loadConfiguration(guildItems);
+		playerTimeData = YamlConfiguration.loadConfiguration(playerTime);
 		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The guildItems.yml file has been reloaded");
+	}
+	
+	public void setupPlayerTime() {
+		if (!plugin.getDataFolder().exists()) {
+			plugin.getDataFolder().mkdir();
+		}
+		
+		playerTime = new File(plugin.getDataFolder(), "playerTime.yml");
+		
+		if (!playerTime.exists()) {
+			try {
+				playerTime.createNewFile();
+			}
+			catch(IOException e) {
+				Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Could not create the playerTime.yml file");
+			}
+		}
+		
+		playerTimeData = YamlConfiguration.loadConfiguration(playerTime);
+	}
+	
+	public FileConfiguration getPlayerTime() {
+		return playerTimeData;
+	}
+	
+	public void savePlayerTime() {
+		try {
+			playerTimeData.save(playerTime);
+		}
+		catch (IOException e) {
+			Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Could not save the playerTime.yml file");
+		}
+	}
+	
+	public void reloadPlayerTime() {
+		playerTimeData = YamlConfiguration.loadConfiguration(playerTime);
+		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The playerTime.yml file has been reloaded");
 	}
 }
