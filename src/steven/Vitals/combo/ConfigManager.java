@@ -93,7 +93,7 @@ public class ConfigManager implements Listener {
 	}
 	
 	public void reloadGuildItems() {
-		playerTimeData = YamlConfiguration.loadConfiguration(playerTime);
+		guildItemsData = YamlConfiguration.loadConfiguration(guildItems);
 		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The guildItems.yml file has been reloaded");
 	}
 	

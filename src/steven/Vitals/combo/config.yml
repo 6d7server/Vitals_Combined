@@ -1,0 +1,102 @@
+# Config file
+
+# All modules start with default false
+FeatherFly: false
+#this is for sponge and emerald mods
+Movement: false
+Consume_emmy: false
+elevator: false
+Auctions: false
+World_time: false
+Blaze_case: false
+betterchain: false
+Buy_rank: false
+Play_time: false
+2hr_citizen: false
+wanderer_time: 120
+veteran_time: 50
+info: true
+top: true
+Fishing_bait: false
+bait_item: 'PUMPKIN_SEEDS'
+monopoly_modifier: 50000
+chatsymbols: true
+chatformat: true
+Sidebar: true
+
+guild_regions:
+- brewingguildzone
+- enchantguildzone
+- farmingguildzone
+- fishingguildzone
+- miningguildzone
+- rancherguildzone
+- slayerguildzone
+- wcguildzone
+
+#Rank cost and modifer
+Price_mod:
+- 25
+- 50
+- 75
+- 100
+- 125
+- 150
+- 175
+Price_base:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
+- 22
+- 23
+- 24
+- 25
+- 26
+- 27
+- 28
+- 29
+- 30
+
+Ranks:
+    - Wanderer
+    - Citizen
+    - Noble
+    - Merchant
+    - Knight
+    - Baron
+    - Duke
+    - Chancellor
+    - Viceroy
+    - Guardian
+    - Avatar
+
+Sub_Ranks:
+    - Owner
+    - Admin
+    - Mod
+    - Trusted
+    - Sapphire
+    - Ruby
+    - Dragonstone
+    - Veteran
+    
+#No perms string
+noPerms: 'You do not have permission to run this command.'

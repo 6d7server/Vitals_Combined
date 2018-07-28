@@ -11,7 +11,12 @@ import net.minecraft.server.v1_12_R1.CommandExecute;
 
 public class Commands extends CommandExecute implements Listener, CommandExecutor {
 	
-	private Main plugin = Main.getPlugin(Main.class);
+	//get config
+	private Main plugin;
+	
+	public Commands(Main pl) {
+		plugin = pl;
+	}
 	
 	public String cmd1 = "guild";
 	public String cmd2 = "chatsymbol";
@@ -59,7 +64,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 					}
 				}
 			}
-			else if (cmd.getName().equalsIgnoreCase(cmd2)) {
+			if (cmd.getName().equalsIgnoreCase(cmd2)) {
 				if (plugin.getConfig().getBoolean("chatsymbols")) {
 					Player player = (Player)sender;
 					if (player.hasPermission("chatsymbol.v")) {
@@ -146,6 +151,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 				return true;
 			}
 		}
+		
 		else {
 			sender.sendMessage(ChatColor.RED + "Only players can use this command.");
 			return true;

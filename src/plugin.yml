@@ -1,0 +1,102 @@
+name: VitalsCom
+author: stevenmlittle
+version: 2.1
+main: steven.Vitals.combo.Main
+description: A complete modification and rewrite of the custom plugin "Vitals" made for the 6d7 server.
+
+commands:
+ guild:
+  usage: /<command>
+  description: contains guild commands
+ chatsymbol:
+  usage: /<command>
+  description: shows all chatsymbols
+ auction:
+  usage: /<command>
+  description: contains auction commands
+ rankup:
+  usage: /<command>
+  description: ranks the player up
+ vitals:
+  usage: /<command>
+  description: contains vitals admins commands
+ playtime:
+  usage: /<command>
+  description: shows the players playtime
+  
+permissions:
+ featherfly.v:
+  description: Allows featherfly
+  default: op
+ betterchain.v:
+  description: gives chainmail modification
+  default: op
+ auctionstart.v:
+  description: can start an auction
+  default: op
+ auctionbid.v:
+  description: can bid on item
+  default: op
+ blazecast.v:
+  description: spawn fireball
+  default: op
+ wanderer.v:
+  description: default rank
+  default: false
+ citizen.v:
+  description: rank 1
+  default: false
+ noble.v:
+  description: rank 2
+  default: false
+ merchant.v:
+  description: rank 3
+  default: false
+ knight.v:
+  description: rank 4
+  default: false
+ baron.v:
+  description: rank 5
+  default: false
+ duke.v:
+  description: rank 6
+  default: false
+ chancellor.v:
+  description: rank 7
+  default: false
+ viceroy.v:
+  description: rank 8
+  default: false
+ guardian.v:
+  description: rank 9
+  default: false
+ avatar.v:
+  description: rank 10
+  default: false
+ owner.v:
+  description: rank owner
+  default: false
+ admin.v:
+  description: rank admin
+  default: false
+ mod.v:
+  description: rank mod
+  default: false
+ trusted.v:
+  description: rank trusted
+  default: false
+ sapphire.v:
+  description: donor 1
+  default: false
+ ruby.v:
+  description: donor 2
+  default: false
+ drangonstone.v:
+  description: donor 3
+  default: false
+ veteran.v:
+  description: 50 hours+ on old server
+  default: false
+ consumeemmy.v:
+  description: consume emerald for temporary speed buff
+  default: false
