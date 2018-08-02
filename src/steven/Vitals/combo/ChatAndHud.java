@@ -24,7 +24,7 @@ public class ChatAndHud implements Listener {
 			Scoreboard b = m.getNewScoreboard();
 			
 			String NickName = player.getDisplayName();			
-			Objective o = b.registerNewObjective("Player Info", "");
+			Objective o = b.registerNewObjective("Player Info", "", "");
 			o.setDisplaySlot(DisplaySlot.SIDEBAR);
 			o.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + NickName);
 			
@@ -177,42 +177,5 @@ public class ChatAndHud implements Listener {
 		int hours = (int)((time/1000+8)%24);
 		int minutes = (int)(60*(time%1000)/1000);
 		return String.format("%02d:%02d", hours, minutes);
-	}
-	
-	public void updaterME(Player player) {
-		ScoreboardManager m = Bukkit.getScoreboardManager();
-		Scoreboard b = m.getNewScoreboard();
-		
-		String NickName = player.getDisplayName();			
-		Objective o = b.registerNewObjective("Player Info", "");
-		o.setDisplaySlot(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + NickName);
-			
-		Score rankT = o.getScore(ChatColor.GOLD + "" + ChatColor.BOLD + "Rank:");
-		rankT.setScore(15);
-		
-		Score rank = o.getScore(ChatColor.YELLOW + getGroup(player));
-		rank.setScore(14);
-		
-		Score newline = o.getScore(ChatColor.WHITE + "");
-		newline.setScore(13);
-		
-		Score balT = o.getScore(ChatColor.GOLD + "" + ChatColor.BOLD + "Balance:");
-		balT.setScore(12);
-		
-		String bal = String.format("$%,.2f", plugin.economy.getBalance(player));
-		Score balance = o.getScore(ChatColor.YELLOW + bal);
-		balance.setScore(11);
-		
-		Score newLine1 = o.getScore(ChatColor.WHITE + " ");
-		newLine1.setScore(10);
-		
-		Score timeT = o.getScore(ChatColor.GOLD + "" + ChatColor.BOLD + "World Time:");
-		timeT.setScore(9);
-		
-		Score time = o.getScore(ChatColor.YELLOW + time("6d7"));
-		time.setScore(8);
-		
-		player.setScoreboard(b);
 	}
 }

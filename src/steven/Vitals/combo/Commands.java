@@ -7,15 +7,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import net.minecraft.server.v1_12_R1.CommandExecute;
-
-public class Commands extends CommandExecute implements Listener, CommandExecutor {
+public class Commands implements Listener, CommandExecutor {
 	
 	//get config
 	private Main plugin;
 	
-	public Commands(Main pl) {
-		plugin = pl;
+	public Commands(Main plugin) {
+		
 	}
 	
 	public String cmd1 = "guild";
@@ -158,6 +156,4 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		}
 		return false;		
 	}
-
-
 }
