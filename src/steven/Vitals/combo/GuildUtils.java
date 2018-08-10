@@ -220,17 +220,17 @@ public class GuildUtils implements Listener {
 	public Material zoneItem(String guild) {
 		switch (guild) {
 		case "brewingguildzone":
-			return Material.BREWING_STAND_ITEM;
+			return Material.BREWING_STAND;
 		case "enchantguildzone":
-			return Material.ENCHANTMENT_TABLE;
+			return Material.ENCHANTING_TABLE;
 		case "farmingguildzone":
 			return Material.WHEAT;
 		case "fishingguildzone":
-			return Material.RAW_FISH;
+			return Material.COD;
 		case "miningguildzone":
 			return Material.DIAMOND_PICKAXE;
 		case "rancherguildzone":
-			return Material.RAW_BEEF;
+			return Material.BEEF;
 		case "slayerguildzone":
 			return Material.ROTTEN_FLESH;
 		case "wcguildzone":

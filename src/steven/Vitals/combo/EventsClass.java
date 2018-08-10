@@ -121,7 +121,7 @@ public class EventsClass implements Listener {
 
 		if (open.getName().equals(ChatColor.translateAlternateColorCodes('&', ChatColor.translateAlternateColorCodes('&', name)))) {
 			if (item != null && item.getType() != Material.AIR && item.hasItemMeta()) {
-				if (item.getType() == Material.STAINED_GLASS_PANE) {
+				if (item.getType() == Material.BLACK_STAINED_GLASS_PANE) {
 					event.setCancelled(true);
 					return;
 				}
@@ -147,7 +147,7 @@ public class EventsClass implements Listener {
 		}
 		else if (open.getName().equals(ChatColor.translateAlternateColorCodes('&', ChatColor.translateAlternateColorCodes('&', name)) + " Shop")) {
 			if (item != null && item.getType() != Material.AIR && item.hasItemMeta()) {
-				if (item.getType() == Material.STAINED_GLASS_PANE) {
+				if (item.getType() == Material.BLACK_STAINED_GLASS_PANE) {
 					event.setCancelled(true);
 					return;
 				}
@@ -183,13 +183,13 @@ public class EventsClass implements Listener {
 		if (rank == 30) {
 			if (event.getState() == State.CAUGHT_FISH) {
 				if (fishProb <= 60) {
-					ItemStack cookedFish = new ItemStack(Material.COOKED_FISH, 1);
+					ItemStack cookedFish = new ItemStack(Material.COOKED_COD, 1);
 					event.setCancelled(true);
 					player.getInventory().addItem(cookedFish);
 					event.getHook().remove();
 				}
 				else if (fishProb <= 76 && !(fishProb <= 60)) {
-					ItemStack cookedFish = new ItemStack(Material.COOKED_FISH, 1, (byte) 1);
+					ItemStack cookedFish = new ItemStack(Material.COOKED_SALMON, 1);
 					event.setCancelled(true);
 					player.getInventory().addItem(cookedFish);
 					event.getHook().remove();

@@ -19,7 +19,7 @@ import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin {
 	
-	public Commands commands = new Commands(this);
+	public Commands commands = new Commands();
 	public Chat chat = null;
 	public Economy economy = null;
 	public Permission permission = null;

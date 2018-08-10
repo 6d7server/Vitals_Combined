@@ -24,7 +24,7 @@ public class ChatAndHud implements Listener {
 			Scoreboard b = m.getNewScoreboard();
 			
 			String NickName = player.getDisplayName();			
-			Objective o = b.registerNewObjective("Player Info", "");
+			Objective o = b.registerNewObjective("Player Info", "", "");
 			o.setDisplaySlot(DisplaySlot.SIDEBAR);
 			o.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + NickName);
 			
@@ -184,7 +184,7 @@ public class ChatAndHud implements Listener {
 		Scoreboard b = m.getNewScoreboard();
 		
 		String NickName = player.getDisplayName();			
-		Objective o = b.registerNewObjective("Player Info", "");
+		Objective o = b.registerNewObjective("Player Info", "", "");
 		o.setDisplaySlot(DisplaySlot.SIDEBAR);
 		o.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + NickName);
 			

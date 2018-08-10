@@ -7,16 +7,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import net.minecraft.server.v1_12_R1.CommandExecute;
+import net.minecraft.server.v1_13_R1.CommandExecute;
 
 public class Commands extends CommandExecute implements Listener, CommandExecutor {
 	
-	//get config
-	private Main plugin;
-	
-	public Commands(Main pl) {
-		plugin = pl;
-	}
+	private Main plugin = Main.getPlugin(Main.class);
 	
 	public String cmd1 = "guild";
 	public String cmd2 = "chatsymbol";

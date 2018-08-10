@@ -20,7 +20,7 @@ public class Inv implements Listener {
 		Material item = plugin.gUtil.zoneItem(guild);
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name));
 		ItemStack a = new ItemStack(item, 1);
-		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+		ItemStack empty = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemStack b = new ItemStack(Material.WRITTEN_BOOK, 1);
 		ItemMeta eMeta = empty.getItemMeta();
 		ItemMeta aMeta = a.getItemMeta();
@@ -60,7 +60,7 @@ public class Inv implements Listener {
 		Material item = plugin.gUtil.zoneItem(guild);
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name) + " Shop");
 		ItemStack a = new ItemStack(item, 1);
-		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+		ItemStack empty = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta eMeta = empty.getItemMeta();
 		ItemMeta aMeta = a.getItemMeta();
 		aMeta.setDisplayName(ChatColor.GOLD + "Test");

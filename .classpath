@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/craftbukkit.jar"/>
+	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/craftbukkit-1.13.jar"/>
 	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/Vault.jar"/>
-	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldedit-bukkit-6.1.7.3.jar"/>
-	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldguard-6.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldguard-1.13.jar"/>
+	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldedit-1.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
