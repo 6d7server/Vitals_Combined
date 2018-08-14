@@ -98,11 +98,12 @@ public class Auction implements Listener {
 	
 	private void auctionend() {
 		Player start = null;
+		GenUtils utils = new GenUtils();
 		
 		if (startamount == currentbid) { //if no bids
 			for (Player player: Bukkit.getServer().getOnlinePlayers()) {
 				if (player.getUniqueId() == startUUID) { //give item back
-					plugin.utils.giveItem(player, AItem, ItemMeta);
+					utils.giveItem(player, AItem, ItemMeta);
 				}
 			}
 			Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "[Auction] " + ChatColor.AQUA + "The auction is over and no one bid.");
@@ -118,7 +119,6 @@ public class Auction implements Listener {
 				if (player.getUniqueId() == lastbidder) {
 					OfflinePlayer pl = player;
 					player.sendMessage(ChatColor.GREEN + "You have won the auction.");
-					plugin.utils.giveItem(player, AItem, ItemMeta); //give item
 					Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "[Auction] " + ChatColor.AQUA + "The auction is over and " + player.getName() + " has won the auction for $" + currentbid);
 					plugin.economy.withdrawPlayer(pl, currentbid); //take money
 					//player.sendMessage(ChatColor.YELLOW + "You paid $" + currentbid + " to " + start.getName() + ".");

@@ -19,17 +19,17 @@ import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin {
 	
-	public Commands commands = new Commands();
+	public Commands commands = new Commands(this);
 	public Chat chat = null;
 	public Economy economy = null;
 	public Permission permission = null;
 	public ConfigManager cfgm;
-	public Guilds guild;
+	/*public Guilds guild;
 	public GuildUtils gUtil;
 	public ChatAndHud ChatHud;
 	public GenUtils utils;
 	public Auction auct;
-	public PlayerInfo pInfo;
+	public PlayerInfo pInfo;*/
 	private int Ticks = 0;
 	public List<UUID> emmy = new ArrayList<>();
 	
@@ -48,6 +48,7 @@ public class Main extends JavaPlugin {
 		setupEconomy();
 		setupPermissions();
 		getWorldGuard();
+		timer();
 	}
 	
 	public void onDisable() {
@@ -69,7 +70,7 @@ public class Main extends JavaPlugin {
 		cfgm.reloadGuildItems();
 	}
 	
-	public void guildLogic() {
+	/*public void guildLogic() {
 		guild = new Guilds();
 	}
 	
@@ -91,13 +92,17 @@ public class Main extends JavaPlugin {
 	
 	public void playerInfo() {
 		pInfo = new PlayerInfo();
-	}
+	}*/
 	
 	public void timer() {
 		new BukkitRunnable() {
 
 			@Override
 			public void run() {
+				ChatAndHud cAndH = new ChatAndHud();
+				GenUtils utils = new GenUtils();
+				//PlayerInfo pInfo = new PlayerInfo();
+				Auction auct = new Auction();
 				
 				Ticks++;
 				
@@ -109,9 +114,9 @@ public class Main extends JavaPlugin {
 				
 				if (Ticks % 20 == 0) {   //every 1 seconds
 					if (getConfig().getBoolean("Sidebar")) {
-						ChatHud.updater();
+						cAndH.updater();
 					}
-					pInfo.playtime();
+					//pInfo.playtime();
 				}
 				if (Ticks % 39 == 0) {	//every 1.9 seconds
 					utils.emmyRemove();

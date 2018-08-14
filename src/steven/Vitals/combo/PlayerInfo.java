@@ -31,7 +31,8 @@ public class PlayerInfo implements Listener {
 	}
 
 	public void playtime() {
-		if (plugin.utils.players()) {
+		GenUtils utils = new GenUtils();
+		if (utils.players()) {
 			for (Player player : Bukkit.getOnlinePlayers()) {
 				if (plugin.cfgm.getPlayerTime().contains(player.getUniqueId().toString())) {
 					int playtime = plugin.cfgm.getPlayerTime().getInt(player.getUniqueId().toString() + ".playTime");

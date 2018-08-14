@@ -48,9 +48,10 @@ public class EventsClass implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		if (!(plugin.cfgm.getPlayersGuilds().contains(player.getUniqueId().toString()))) {
+			GuildUtils gUtil = new GuildUtils();
 			List<String> guildRegions = plugin.getConfig().getStringList("guild_regions");
 			for (String s : guildRegions) {
-				String name = plugin.gUtil.cfgGuild(s);
+				String name = gUtil.cfgGuild(s);
 				plugin.cfgm.getPlayersGuilds().set(player.getUniqueId().toString() + "." + name, 0);
 			}
 		}
@@ -72,7 +73,6 @@ public class EventsClass implements Listener {
 				plugin.cfgm.getPlayerTime().set(player.getUniqueId().toString() + ".playTime", 0);
 			}
 			plugin.cfgm.savePlayerTime();
-			return;
 		}
 		else
 			return;
@@ -82,7 +82,8 @@ public class EventsClass implements Listener {
 	public void onPlayerClickyEvent(PlayerInteractEntityEvent event) {
 		Entity entity = event.getRightClicked();
 		Player player = event.getPlayer();
-		String guild = plugin.utils.isInGuild(player);
+		GenUtils utils = new GenUtils();
+		String guild = utils.isInGuild(player);
 		
 		if (!guild.equals("Unknown")) {
 			if (guild.equals("brewingguildzone")) {
@@ -111,10 +112,12 @@ public class EventsClass implements Listener {
 	@EventHandler
 	public void InvClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
+		GuildUtils gUtil = new GuildUtils();
+		GenUtils utils = new GenUtils();
 
-		String guild = plugin.utils.isInGuild(player);
-		String name = plugin.gUtil.readableGuild(guild);
-		Material clickable = plugin.gUtil.zoneItem(guild);
+		String guild = utils.isInGuild(player);
+		String name = gUtil.readableGuild(guild);
+		Material clickable = gUtil.zoneItem(guild);
 
 		Inventory open = event.getInventory();
 		ItemStack item = event.getCurrentItem();
@@ -128,12 +131,12 @@ public class EventsClass implements Listener {
 				else if (item.getType() == clickable || item.getType() == Material.WRITTEN_BOOK && item.getAmount() == 1) {
 					if (item.getItemMeta().getDisplayName().equals(ChatColor.GOLD + "Tribute")) {
 						event.setCancelled(true);
-						plugin.gUtil.Tribute(player, guild);
-						plugin.gUtil.nextRank(player, guild);
+						gUtil.Tribute(player, guild);
+						gUtil.nextRank(player, guild);
 					}
 					else if (item.getItemMeta().getDisplayName().equals(ChatColor.GOLD + "Next rank information")) {
 						event.setCancelled(true);
-						plugin.gUtil.nextRank(player, guild);
+						gUtil.nextRank(player, guild);
 					}
 					else {
 						return;
@@ -209,6 +212,7 @@ public class EventsClass implements Listener {
 		Material bait = Material.getMaterial(plugin.getConfig().getString("bait_item"));
 		int count = 0, slot = 0, total = 0;
 		boolean bothSides = false;
+		GuildUtils gUtil = new GuildUtils();
 		
 		if (plugin.getConfig().getBoolean("Fishing_bait")) {
 			if (event.getState() == State.FISHING) {
@@ -226,13 +230,13 @@ public class EventsClass implements Listener {
 					}
 					if (total == 0)
 						total = count - 1;
-					plugin.gUtil.takeBait(slot+1, count, total, player, bait, bothSides);
+					gUtil.takeBait(slot+1, count, total, player, bait, bothSides);
 					return;
 				}
 				else if ((slot-1) >= 0 && player.getInventory().getItem(slot-1) != null && player.getInventory().getItem(slot-1).getType() == bait) {
 					count = player.getInventory().getItem(slot-1).getAmount();
 					total = count - 1;
-					plugin.gUtil.takeBait(slot-1, count, total, player, bait, false);
+					gUtil.takeBait(slot-1, count, total, player, bait, false);
 					return;
 				}
 				else {
@@ -256,38 +260,39 @@ public class EventsClass implements Listener {
 	public void chatEvent(AsyncPlayerChatEvent event) {
 		if (plugin.getConfig().getBoolean("chatformat")) {
 			Player player = event.getPlayer();
+			ChatAndHud util = new ChatAndHud();
 			if (player.hasPermission("wanderer.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GRAY + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.GRAY + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("citizen.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.WHITE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.WHITE + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("noble.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.YELLOW + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.YELLOW + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("merchant.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GOLD + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.GOLD + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("knight.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_GREEN + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.DARK_GREEN + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("baron.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.GREEN + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.GREEN + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("duke.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_PURPLE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.DARK_PURPLE + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("chancellor.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_AQUA + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.DARK_AQUA + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("viceroy.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.AQUA + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.AQUA + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("guardian.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.BLUE + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.BLUE + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 			else if (player.hasPermission("avatar.v")) {
-				event.setFormat(plugin.ChatHud.supergroupTag(player) + ChatColor.DARK_RED + plugin.ChatHud.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + plugin.ChatHud.unicize(event.getMessage()));
+				event.setFormat(util.supergroupTag(player) + ChatColor.DARK_RED + util.getGroup(player) + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + util.unicize(event.getMessage()));
 			}
 		}
 		else

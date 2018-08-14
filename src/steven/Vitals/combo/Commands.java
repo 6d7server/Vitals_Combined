@@ -7,11 +7,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import net.minecraft.server.v1_13_R1.CommandExecute;
-
-public class Commands extends CommandExecute implements Listener, CommandExecutor {
+public class Commands implements Listener, CommandExecutor {
 	
-	private Main plugin = Main.getPlugin(Main.class);
+	//get config
+	private Main plugin;
+	
+	public Commands(Main pl) {
+		plugin = pl;
+	}
 	
 	public String cmd1 = "guild";
 	public String cmd2 = "chatsymbol";
@@ -27,10 +30,11 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		
 		if(sender instanceof Player) {
 			if (cmd.getName().equalsIgnoreCase(cmd1)) {
+				Guilds guild = new Guilds();
 				if (args.length >= 1) {
 					switch(args[0]) {
 						case "help":
-							plugin.guild.printHelp((Player) sender);
+							guild.printHelp((Player) sender);
 							return true;
 						case "reload":
 							sender.sendMessage(ChatColor.BLUE + "Reloading players.yml & config.yml...");
@@ -41,19 +45,20 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 							return true;
 						case "stats":
 							if (args.length == 2) {
-								plugin.guild.printStats(plugin.guild.getPlayer(args[1]), (Player) sender);
+								guild.printStats(guild.getPlayer(args[1]), (Player) sender);
 							}
 							else
-								plugin.guild.printStats(((Player) sender).getUniqueId(), (Player) sender);
+								guild.printStats(((Player) sender).getUniqueId(), (Player) sender);
 							return true;
 					}
 				}
 				else {
-					String guild = plugin.utils.isInGuild((Player) sender);
-					if (!guild.equals("Unknown")) {
+					GenUtils utils = new GenUtils();
+					String guilds = utils.isInGuild((Player) sender);
+					if (!guilds.equals("Unknown")) {
 						Inv I = new Inv();
 						
-						I.GuildInventory((Player) sender, guild);
+						I.GuildInventory((Player) sender, guilds);
 						
 						return true;
 					}
@@ -62,9 +67,10 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			if (cmd.getName().equalsIgnoreCase(cmd2)) {
 				if (plugin.getConfig().getBoolean("chatsymbols")) {
 					Player player = (Player)sender;
+					ChatAndHud ChatHud = new ChatAndHud();
 					if (player.hasPermission("chatsymbol.v")) {
 						player.sendMessage(ChatColor.GREEN + "[Avaliable Unicodes]");
-				    	player.sendMessage(plugin.ChatHud.unicodeList());
+				    	player.sendMessage(ChatHud.unicodeList());
 				    	return true;
 					}
 					else
@@ -78,6 +84,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			else if (cmd.getName().equalsIgnoreCase(cmd3)) {
 				if (plugin.getConfig().getBoolean("auctions")) {
+					Auction auct = new Auction();
 					if (args.length >= 1) {
 						switch(args[0]) {
 							case "start":
@@ -88,10 +95,10 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 											return true;
 										}
 										else if (args.length == 2) {
-												plugin.auct.startamount = Integer.parseInt(args[0]);
-												plugin.auct.startAuction(sender);
-												((Player) sender).getInventory().getItemInMainHand().setAmount(0);
-												return true;
+											auct.startamount = Integer.parseInt(args[0]);
+											auct.startAuction(sender);
+											((Player) sender).getInventory().getItemInMainHand().setAmount(0);
+											return true;
 										}
 									}
 									else {
@@ -113,7 +120,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 									}
 									else if (args.length == 2) {
 										int bidamount = Integer.parseInt(args[0]);
-										plugin.auct.bid(sender, bidamount);
+										auct.bid(sender, bidamount);
 										return true;
 									}
 								}
@@ -127,7 +134,8 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			else if (cmd.getName().equalsIgnoreCase(cmd4)) {
 				if (plugin.getConfig().getBoolean("Buy_rank")) {
 					Player send = (Player)sender;
-					plugin.utils.buyRank(send);
+					GenUtils utils = new GenUtils();
+					utils.buyRank(send);
 					return true;
 				}
 				else
@@ -135,14 +143,16 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			else if (cmd.getName().equalsIgnoreCase(cmd5)) {
 				if (sender.hasPermission("vitalsOP.v")) {
-					plugin.utils.reloadAllCfg();
+					GenUtils utils = new GenUtils();
+					utils.reloadAllCfg();
 					return true;
 				}
 				else
 					return true;
 			}
 			else if (cmd.getName().equalsIgnoreCase(cmd6)) {
-				plugin.utils.getPlayTime((Player) sender);
+				GenUtils utils = new GenUtils();
+				utils.getPlayTime((Player) sender);
 				return true;
 			}
 		}

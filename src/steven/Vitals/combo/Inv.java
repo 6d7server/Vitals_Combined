@@ -16,8 +16,9 @@ public class Inv implements Listener {
 	
 	
 	public void GuildInventory(Player player, String guild) {
-		String name = plugin.gUtil.readableGuild(guild);
-		Material item = plugin.gUtil.zoneItem(guild);
+		GuildUtils gUtil = new GuildUtils();
+		String name = gUtil.readableGuild(guild);
+		Material item = gUtil.zoneItem(guild);
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name));
 		ItemStack a = new ItemStack(item, 1);
 		ItemStack empty = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
@@ -56,8 +57,9 @@ public class Inv implements Listener {
 	}
 	
 	public void GShopInventory(Player player, String guild) {
-		String name = plugin.gUtil.readableGuild(guild);
-		Material item = plugin.gUtil.zoneItem(guild);
+		GuildUtils gUtil = new GuildUtils();
+		String name = gUtil.readableGuild(guild);
+		Material item = gUtil.zoneItem(guild);
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name) + " Shop");
 		ItemStack a = new ItemStack(item, 1);
 		ItemStack empty = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);

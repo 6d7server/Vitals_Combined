@@ -3,6 +3,7 @@ author: stevenmlittle
 version: 2.1
 main: steven.Vitals.combo.Main
 description: A complete modification and rewrite of the custom plugin "Vitals" made for the 6d7 server.
+api-version: 1.13
 
 commands:
  guild:
